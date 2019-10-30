@@ -108,7 +108,51 @@ const data = [
   Step 3: return the entire component.
 
   Step 4: Map over the data, creating a component for each oject and add each component to the DOM as children of the 'articles' div.
-
+  
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
 
 */
+
+const panel = document.querySelector('.articles');
+
+function createPanel (title, date, firstParagraph, secondParagraph, thirdParagraph) {
+
+  const panel = document.createElement('div');
+  const header = document.createElement('h2');
+  const paragraph = document.createElement('p');
+  const para1 = document.createElement('p');
+  const para2 = document.createElement('p');
+  const para3 = document.createElement('p');
+  const span = document.createElement('span');
+
+  panel.appendChild(header);
+  panel.appendChild(paragraph);
+  panel.appendChild(para1);
+  panel.appendChild(para2);
+  panel.appendChild(para3);
+  panel.appendChild(span);
+
+  panel.classList.add('article');
+  header.classList.add('date');
+  span.classList.add('expandButton');
+
+  header.textContent = title;
+  paragraph.textContent = date;
+  para1.textContent = firstParagraph;
+  para2.textContent = secondParagraph;
+  para3.textContent = thirdParagraph;
+  span.textContent = 'Click for More';
+
+  span.addEventListener('click', () => {
+    panel.classList.toggle('article-open');
+  })
+
+return panel
+
+};
+
+data.map( data =>{
+  panel.appendChild(createPanel(data.title, data.date, data.firstParagraph, data.secondParagraph, data.thirdParagraph))
+})
+
+
